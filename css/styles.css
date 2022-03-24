@@ -1,0 +1,49 @@
+.form-container {
+    margin: auto;
+    text-align: center;
+    max-width: 500px;
+}
+.form-input {
+    width: 250px;
+}
+.main-title {
+    text-align: center;
+    color: #3498db;
+    font-size: 30px;
+}
+.submit-button {
+    text-align: center;
+}
+.title-container{
+    padding: 25px;
+}
+
+.send {
+    margin: auto;
+    max-width: 1000px;
+    padding-top: 175px;
+    text-align: center;
+}
+.send h1 {
+    font-size: 28px;
+}
+.send-button {
+    color: #2980b9;
+    border-color: #2980b9;
+    border-radius: 5px;
+    border-style: solid;
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px 200px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all ease-in-out 0.3s;
+}
+.send-button:hover {
+    box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transform: translate(0, -10px) scale(1.02);
+}
+.send-button-holder {
+    padding-top: 100px;
+}
