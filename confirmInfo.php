@@ -81,7 +81,7 @@ $email_message = "
 // set email headers
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= 'From: taylor@taylorparker.me' . "\r\n";
+$headers .= 'From: email@email.com' . "\r\n";
 mail($email_to, $email_subject, $email_message, $headers);
 ?>
 
