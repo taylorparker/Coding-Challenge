@@ -8,6 +8,14 @@
     <title>DonorDrive Coding Challenge</title>
 </head>
 <body>
+    <script>
+        let infoJSON = {}
+        
+        if (sessionStorage.getItem("contactInfo")) { // check if contact info exists in the session
+            infoJSON = JSON.parse(sessionStorage.getItem("contactInfo")); // update the infoJSON if there is session data
+        }
+        
+    </script>
 
     <div class="title-container">
         <h1 class="main-title">Taylor Parker's Coding Challenge</h1>
@@ -21,10 +29,34 @@
             <input type="input" class="form-input" name="lastName" id="lastName" placeholder="Last Name" required/><br/>
             <label for="email">Email:</label>
             <input type="input" class="form-input" name="email" id="email" placeholder="name@email.com" required/><br/><br/>
-            <div class="submit-button">
-                <input type="submit" value="Confirm Info">
+            <div class="submit-button-holder">
+                <a href="index.html">
+                    <button onclick="saveFormData()" class="send-button" type="submit">Confirm Info</button>
+                </a>
             </div>
         </form>
     </div>
+
+    <script>
+        window.onload = function() {
+            checkFormData();
+        };
+
+        const checkFormData = () => {
+            if (!Object.keys(infoJSON).length == 0) { // only update the form values if the infoJSON has data
+                document.getElementById("firstName").value = infoJSON.firstName;
+                document.getElementById("lastName").value = infoJSON.lastName;
+                document.getElementById("email").value = infoJSON.email;
+            }
+        }
+
+        const saveFormData = () => { // get each value from the form, and save them to the infoJSON.
+            infoJSON.firstName = document.getElementById("firstName").value;
+            infoJSON.lastName = document.getElementById("lastName").value;
+            infoJSON.email = document.getElementById("email").value;
+
+            sessionStorage.setItem('contactInfo', JSON.stringify(infoJSON)); //save the infoJSON to session storage.
+        }
+    </script>
 </body>
 </html>
