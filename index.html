@@ -11,8 +11,8 @@
     <script>
         let infoJSON = {}
         
-        if (sessionStorage.getItem("contactInfo")) { // check if contact info exists in the session
-            infoJSON = JSON.parse(sessionStorage.getItem("contactInfo")); // update the infoJSON if there is session data
+        if (localStorage.getItem("contactInfo")) { // check if contact info exists in storage
+            infoJSON = JSON.parse(localStorage.getItem("contactInfo")); // update the infoJSON if there is storage data
         }
         
     </script>
@@ -55,7 +55,7 @@
             infoJSON.lastName = document.getElementById("lastName").value;
             infoJSON.email = document.getElementById("email").value;
 
-            sessionStorage.setItem('contactInfo', JSON.stringify(infoJSON)); //save the infoJSON to session storage.
+            localStorage.setItem('contactInfo', JSON.stringify(infoJSON)); //save the infoJSON to storage storage.
         }
     </script>
 </body>
