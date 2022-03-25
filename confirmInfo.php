@@ -60,15 +60,22 @@ if(isset($_POST['email'])) {
    * This location was chosen since it is after the user's input have been validated
    * We will still use prepared statements
   */
-  include 'includes/dbCon.php';
-  $conn = new mysqli($server, $user, $pass, $db);
+  try {
+    include 'includes/dbCon.php';
+    $conn = new mysqli($server, $user, $pass, $db);
 
-  $stmt = $conn->prepare("INSERT INTO MockupDatabase (firstName, lastName, email) VALUES (?, ?, ?)");
-  $stmt->bind_param("sss", $first_name, $last_name, $email);
-  $stmt->execute();
+    $stmt = $conn->prepare("INSERT INTO MockupDatabase (firstName, lastName, email) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $first_name, $last_name, $email);
+    $stmt->execute();
 
-  $stmt->close();
-  $conn->close();
+    $stmt->close();
+    $conn->close();
+  } catch (Exception $e) {
+    /*
+    * Due to this being a mock database, it will never connect.
+    * The try/catch block allows us to continue with our application instead of crashing
+    */
+  }
   // all database opertations are closed
 
   $email_to = $email;
