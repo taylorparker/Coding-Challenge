@@ -20,7 +20,6 @@ if(isset($_POST['email'])) {
     die();
   }
 
-
   // validate data isn't null/empty
   if(!isset($_POST['firstName']) ||
       !isset($_POST['lastName']) ||
@@ -55,6 +54,22 @@ if(isset($_POST['email'])) {
     $extraText = array("content-type","bcc:","to:","cc:","href");
     return str_replace($extraText,"",$string);
   }
+
+  /*
+   * Write the contact info to the database
+   * This location was chosen since it is after the user's input have been validated
+   * We will still use prepared statements
+  */
+  include 'includes/dbCon.php';
+  $conn = new mysqli($server, $user, $pass, $db);
+
+  $stmt = $conn->prepare("INSERT INTO MockupDatabase (firstName, lastName, email) VALUES (?, ?, ?)");
+  $stmt->bind_param("sss", $first_name, $last_name, $email);
+  $stmt->execute();
+
+  $stmt->close();
+  $conn->close();
+  // all database opertations are closed
 
   $email_to = $email;
   $email_subject = "Please confirm your contact information.";
